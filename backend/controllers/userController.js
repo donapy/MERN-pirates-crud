@@ -50,7 +50,7 @@ const loginUser = asyncHandler(async (req, res) => {
         .status(200)
         .cookie("token", token, {
           httpOnly: true,
-          expires: new Date(Date.now() + 14400),
+          expires: new Date(Date.now() + 65000),
         })
         .json({
           // success: true,
@@ -73,14 +73,15 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   POST /api/user/newUser
 // @access  Public
 const newUser = asyncHandler(async (req, res) => {
-  const { fullname, email, password } = req.body;
+  const { fullname, email, password, confirmpassword } = req.body;
   if (
     !fullname ||
     fullname.length < 4 ||
     email.length < 5 ||
     !email ||
     !password ||
-    password.lenght < 4
+    password.lenght < 4 ||
+    password !== confirmpassword
   ) {
     return res.status(400).json({
       message: "Error, invalid inputs to create a new User",

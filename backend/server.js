@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/user", require("./routes/userRoutes"));
-app.use("/api/todo", require("./routes/todoRoutes"));
+app.use("/api/pirate", require("./routes/pirateRoutes"));
 
 app.listen(port, () => {
   console.log(`Server running on ${port}`);
